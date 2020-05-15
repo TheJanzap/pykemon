@@ -81,16 +81,18 @@ def execAttack(attackNum):
 	else:
 		victim.hp -= attackDmg
 		print("\n" + attacker.name + " dealt " + str(attackDmg) + " damage to " + victim.name + "!")
-	
+
+#Hah, yeah as if I knew how to build a proper AI. These are mainly condition checks I thought made sense.
 def ai():
-	if (enemy.hp / enemy.maxHp) > 0.5:
-		return 1
-	elif (enemy.hp / enemy.maxHp) > 0.25:
+	#Deliver "killing blow" to player. Has to be first, otherwise only heals himself
+	if (player.hp / player.maxHp) < 0.25:
 		return 2
-	elif (player.hp / player.maxHp) < 0.25:
+	#Healing when HP drops below 25%
+	elif (enemy.hp / enemy.maxHp) < 0.25:
 		return 2
+	#Choose random attack, default behaviour
 	else:
-		return 3
+		return random.randint(1, 2)
 
 init()
 print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
