@@ -54,9 +54,10 @@ def selectAttack():
 	i = 1
 	for move in player.moves:
 		if move.attackType == "heal":
-			print("Attack " + str(i) + ": " + str(move.min) + "-" + str(move.max) + " Healing " + "(" + move.attackType + ")")
+			attackTypeText = " Healing "
 		else:
-			print("Attack " + str(i) + ": " + str(move.min) + "-" + str(move.max) + " Damage " + "(" + move.attackType + " attack)")
+			attackTypeText = " Damage "
+		print("Attack " + str(i) + ": " + str(move.min) + "-" + str(move.max) + attackTypeText + "(" + move.attackType + " attack)")
 		i += 1
 
 	return eval(input("Select your Attack: "))
