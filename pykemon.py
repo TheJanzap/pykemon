@@ -74,8 +74,8 @@ def execAttack(attackNum):
 
 	attackDmg = random.randint(attacker.moves[attackNum - 1].min, attacker.moves[attackNum - 1].max)
 	if attacker.moves[attackNum - 1].attackType == "heal":
-		if attacker.hp + attackDmg > 100:
-			attacker.hp = 100
+		if attacker.hp + attackDmg > attacker.maxHp:
+			attacker.hp = attacker.maxHp
 			print(attacker.name + " fully healed themselves!")
 		else:
 			attacker.hp += attackDmg
