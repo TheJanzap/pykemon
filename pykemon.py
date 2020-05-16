@@ -1,4 +1,4 @@
-import random, os, time
+import random, os
 from colorama import init
 from colorama import Fore
 from colorama import Style
