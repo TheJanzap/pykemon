@@ -96,47 +96,50 @@ def ai():
 	else:
 		return random.randint(1, 2)
 
-init()
 
-clear = lambda: os.system('cls')
-clear()
+if __name__ == "__main__":
+	
+	init()
 
-print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
-selectedPokemon = eval(input("Type the number of your desired Pokémon: "))
+	clear = lambda: os.system('cls')
+	clear()
 
-player = Pokemon()
-enemy = Pokemon()
+	print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
+	selectedPokemon = eval(input("Type the number of your desired Pokémon: "))
 
-clear()
+	player = Pokemon()
+	enemy = Pokemon()
 
-if selectedPokemon == 1:
-	print("You've selected Evee!")
-	player.selectPokemon("Eevee")
-	enemy.selectPokemon("Jigglypuff")
-	print("Your enemy selected Jigglypuff!")
+	clear()
 
-if selectedPokemon == 2:
-	print("You've selected Jigglypuff!")
-	player.selectPokemon("Jigglypuff")
-	enemy.selectPokemon("Eevee")
-	print("Your enemy selected Eevee!")
+	if selectedPokemon == 1:
+		print("You've selected Evee!")
+		player.selectPokemon("Eevee")
+		enemy.selectPokemon("Jigglypuff")
+		print("Your enemy selected Jigglypuff!")
+
+	if selectedPokemon == 2:
+		print("You've selected Jigglypuff!")
+		player.selectPokemon("Jigglypuff")
+		enemy.selectPokemon("Eevee")
+		print("Your enemy selected Eevee!")
 
 
-turnPlayer = True
+	turnPlayer = True
 
-while player.hp > 0 and enemy.hp > 0:
-	if turnPlayer == True:
-		attack = selectAttack()
-		clear()
-		execAttack(attack)
-		turnPlayer = False
+	while player.hp > 0 and enemy.hp > 0:
+		if turnPlayer == True:
+			attack = selectAttack()
+			clear()
+			execAttack(attack)
+			turnPlayer = False
+		else:
+			attack = ai()
+			execAttack(attack)
+			turnPlayer = True
+
+	if player.hp <= 0:
+		print(player.name + " has been defeated!\nYou lose!")
 	else:
-		attack = ai()
-		execAttack(attack)
-		turnPlayer = True
-
-if player.hp <= 0:
-	print(player.name + " has been defeated!\nYou lose!")
-else:
-	print(enemy.name + " has been defeated!\nYou win!")
-input("\nPress Enter to end the program...")
+		print(enemy.name + " has been defeated!\nYou win!")
+	input("\nPress Enter to end the program...")
