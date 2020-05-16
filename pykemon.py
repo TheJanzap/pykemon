@@ -119,8 +119,6 @@ if selectedPokemon == 2:
 	enemy.selectPokemon("Eevee")
 	print("\nYour enemy selected Eevee!")
 
-time.sleep(2)
-clear()
 
 turnPlayer = True
 
