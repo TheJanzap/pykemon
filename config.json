@@ -8,6 +8,10 @@
         {
             "name": "Jigglypuff",
             "hp": 100
+        },
+        {
+            "name": "BiggusDickus",
+            "hp": 150
         }
     ],
     "moves": [
