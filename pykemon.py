@@ -38,6 +38,7 @@ class Moves:
 		self.setAttackValues(*switch.get(attackType))
 
 def printHP():
+	print("")
 	for obj in [player, enemy]:
 		if (obj.hp / obj.maxHp) > 0.5:
 			textColor = "GREEN"
@@ -47,10 +48,11 @@ def printHP():
 			textColor = "RED"
 
 		changeColor = getattr(Fore, textColor)
-		print(obj.name + f"s HP: {changeColor}"  + str(obj.hp) + f"{Style.RESET_ALL}/100" + "\n")
+		print(obj.name + f"s HP: {changeColor}"  + str(obj.hp) + f"{Style.RESET_ALL}/100")
 	
 def selectAttack():
 	printHP()
+	print("")
 	i = 1
 	for move in player.moves:
 		if move.attackType == "heal":
@@ -74,13 +76,13 @@ def execAttack(attackNum):
 	if attacker.moves[attackNum - 1].attackType == "heal":
 		if attacker.hp + attackDmg > 100:
 			attacker.hp = 100
-			print("\n" + attacker.name + " fully healed themselves!")
+			print(attacker.name + " fully healed themselves!")
 		else:
 			attacker.hp += attackDmg
-			print("\n" + attacker.name + " healed " + str(attackDmg) + " HP!")
+			print(attacker.name + " healed " + str(attackDmg) + " HP!")
 	else:
 		victim.hp -= attackDmg
-		print(attacker.name + " dealt " + str(attackDmg) + " damage to " + victim.name + "!" + "\n")
+		print(attacker.name + " dealt " + str(attackDmg) + " damage to " + victim.name + "!")
 
 #Hah, yeah as if I knew how to build a proper AI. These are mainly condition checks I thought made sense.
 def ai():
@@ -111,13 +113,13 @@ if selectedPokemon == 1:
 	print("You've selected Evee!")
 	player.selectPokemon("Eevee")
 	enemy.selectPokemon("Jigglypuff")
-	print("\nYour enemy selected Jigglypuff!")
+	print("Your enemy selected Jigglypuff!")
 
 if selectedPokemon == 2:
 	print("You've selected Jigglypuff!")
 	player.selectPokemon("Jigglypuff")
 	enemy.selectPokemon("Eevee")
-	print("\nYour enemy selected Eevee!")
+	print("Your enemy selected Eevee!")
 
 
 turnPlayer = True
@@ -137,4 +139,4 @@ if player.hp <= 0:
 	print(player.name + " has been defeated!\nYou lose!")
 else:
 	print(enemy.name + " has been defeated!\nYou win!")
-input("Press Enter to end the program...")
+input("\nPress Enter to end the program...")
