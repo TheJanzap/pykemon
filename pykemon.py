@@ -1,4 +1,4 @@
-import random
+import random, os, time
 from colorama import init
 from colorama import Fore
 from colorama import Style
@@ -47,7 +47,7 @@ def printHP():
 			textColor = "RED"
 
 		changeColor = getattr(Fore, textColor)
-		print("\n" + obj.name + f"s HP: {changeColor}"  + str(obj.hp) + f"{Style.RESET_ALL}/100")
+		print(obj.name + f"s HP: {changeColor}"  + str(obj.hp) + f"{Style.RESET_ALL}/100" + "\n")
 	
 def selectAttack():
 	printHP()
@@ -80,7 +80,7 @@ def execAttack(attackNum):
 			print("\n" + attacker.name + " healed " + str(attackDmg) + " HP!")
 	else:
 		victim.hp -= attackDmg
-		print("\n" + attacker.name + " dealt " + str(attackDmg) + " damage to " + victim.name + "!")
+		print(attacker.name + " dealt " + str(attackDmg) + " damage to " + victim.name + "!" + "\n")
 
 #Hah, yeah as if I knew how to build a proper AI. These are mainly condition checks I thought made sense.
 def ai():
@@ -95,28 +95,39 @@ def ai():
 		return random.randint(1, 2)
 
 init()
+
+clear = lambda: os.system('cls')
+clear()
+
 print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
 selectedPokemon = eval(input("Type the number of your desired Pokémon: "))
 
 player = Pokemon()
 enemy = Pokemon()
+
+clear()
+
 if selectedPokemon == 1:
-	print("\nYou've selected Evee!")
+	print("You've selected Evee!")
 	player.selectPokemon("Eevee")
 	enemy.selectPokemon("Jigglypuff")
 	print("\nYour enemy selected Jigglypuff!")
 
 if selectedPokemon == 2:
-	print("\nYou've selected Jigglypuff!")
+	print("You've selected Jigglypuff!")
 	player.selectPokemon("Jigglypuff")
 	enemy.selectPokemon("Eevee")
 	print("\nYour enemy selected Eevee!")
+
+time.sleep(2)
+clear()
 
 turnPlayer = True
 
 while player.hp > 0 and enemy.hp > 0:
 	if turnPlayer == True:
 		attack = selectAttack()
+		clear()
 		execAttack(attack)
 		turnPlayer = False
 	else:
