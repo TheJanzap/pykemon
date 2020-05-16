@@ -1,0 +1,30 @@
+
+{
+    "pokemon": [
+        {
+            "name": "Eevee",
+            "hp": 100
+        },
+        {
+            "name": "Jigglypuff",
+            "hp": 100
+        }
+    ],
+    "moves": [
+        {
+            "name": "close",
+            "min": 17,
+            "max": 26
+        },
+        {
+            "name": "area",
+            "min": 10,
+            "max": 34
+        },
+        {
+            "name": "heal",
+            "min": 15,
+            "max": 27
+        }
+    ]
+}
