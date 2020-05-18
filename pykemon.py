@@ -1,7 +1,5 @@
 import random, os
-from colorama import init
-from colorama import Fore
-from colorama import Style
+from colorama import init, Fore, Style
 
 class Pokemon:
 	def __init__(self):
