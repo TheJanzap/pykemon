@@ -48,7 +48,7 @@ def printHP():
 			textColor = "RED"
 
 		changeColor = getattr(Fore, textColor)
-		print(obj.name + f"s HP: {changeColor}"  + str(obj.hp) + f"{Style.RESET_ALL}/100")
+		print(obj.name + f"s HP: {changeColor}" + str(obj.hp) + f"{Style.RESET_ALL}/100")
 	
 def selectAttack():
 	printHP()
@@ -101,7 +101,7 @@ if __name__ == "__main__":
 	
 	init()
 
-	clear = lambda: os.system('cls')
+	clear = os.system('cls' if os.name=='nt' else 'clear')
 	clear()
 
 	print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
