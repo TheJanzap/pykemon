@@ -16,6 +16,19 @@ class Pokemon:
 			self.moves.append(self.tmpMove)
 			self.tmpMove = Moves()
 
+	def execAttack(self, attackNum, victim):
+		attackDmg = random.randint(self.moves[attackNum - 1].min, self.moves[attackNum - 1].max)
+		if self.moves[attackNum - 1].attackType == "heal":
+			if self.hp + attackDmg > self.maxHp:
+				self.hp = self.maxHp
+				print(self.name + " fully healed themselves!")
+			else:
+				self.hp += attackDmg
+				print(self.name + " healed " + str(attackDmg) + " HP!")
+		else:
+			victim.hp -= attackDmg
+			print(self.name + " dealt " + str(attackDmg) + " damage to " + victim.name + "!")
+
 class Moves:
 	def __init__(self):
 		self.min = int(0)
@@ -61,26 +74,6 @@ def selectAttack():
 		i += 1
 
 	return eval(input("Select your Attack: "))
-
-def execAttack(attackNum):
-	if turnPlayer == True:
-		attacker = player
-		victim = enemy
-	else:
-		attacker = enemy
-		victim = player
-
-	attackDmg = random.randint(attacker.moves[attackNum - 1].min, attacker.moves[attackNum - 1].max)
-	if attacker.moves[attackNum - 1].attackType == "heal":
-		if attacker.hp + attackDmg > attacker.maxHp:
-			attacker.hp = attacker.maxHp
-			print(attacker.name + " fully healed themselves!")
-		else:
-			attacker.hp += attackDmg
-			print(attacker.name + " healed " + str(attackDmg) + " HP!")
-	else:
-		victim.hp -= attackDmg
-		print(attacker.name + " dealt " + str(attackDmg) + " damage to " + victim.name + "!")
 
 #Hah, yeah as if I knew how to build a proper AI. These are mainly condition checks I thought made sense.
 def ai():
@@ -129,11 +122,11 @@ if __name__ == "__main__":
 		if turnPlayer == True:
 			attack = selectAttack()
 			clear()
-			execAttack(attack)
+			player.execAttack(attack, enemy)
 			turnPlayer = False
 		else:
 			attack = ai()
-			execAttack(attack)
+			enemy.execAttack(attack, player)
 			turnPlayer = True
 
 	if player.hp <= 0:
