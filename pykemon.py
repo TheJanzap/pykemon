@@ -101,7 +101,7 @@ if __name__ == "__main__":
 	
 	init()
 
-	clear = os.system('cls' if os.name=='nt' else 'clear')
+	clear = lambda: os.system('cls' if os.name=='nt' else 'clear')
 	clear()
 
 	print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
