@@ -54,6 +54,39 @@ class Moves:
 		self.setAttackValues(*switch.get(attackType))
 
 
+def initGame():
+	#Necessary to get colorama working in Windows
+	init()
+
+	#Clears screen
+	def clear(): return os.system('cls' if os.name == 'nt' else 'clear')
+	clear()
+
+	print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
+	selectedPokemon = eval(input("Type the number of your desired Pokémon: "))
+
+	player = Pokemon()
+	enemy = Pokemon()
+
+	clear()
+
+	if selectedPokemon == 1:
+		print("You've selected Evee!")
+		player.selectPokemon("Eevee")
+		enemy.selectPokemon("Jigglypuff")
+		print("Your enemy selected Jigglypuff!")
+
+	if selectedPokemon == 2:
+		print("You've selected Jigglypuff!")
+		player.selectPokemon("Jigglypuff")
+		enemy.selectPokemon("Eevee")
+		print("Your enemy selected Eevee!")
+
+	turnPlayer = True
+
+	return player, enemy, turnPlayer, clear
+
+
 def printHP():
 	print("")
 	for obj in [player, enemy]:
@@ -100,32 +133,7 @@ def ai():
 
 if __name__ == "__main__":
 
-	init()
-
-	def clear(): return os.system('cls' if os.name == 'nt' else 'clear')
-	clear()
-
-	print("Select a Pokémon!\n1. Eevee\n2. Jigglypuff")
-	selectedPokemon = eval(input("Type the number of your desired Pokémon: "))
-
-	player = Pokemon()
-	enemy = Pokemon()
-
-	clear()
-
-	if selectedPokemon == 1:
-		print("You've selected Evee!")
-		player.selectPokemon("Eevee")
-		enemy.selectPokemon("Jigglypuff")
-		print("Your enemy selected Jigglypuff!")
-
-	if selectedPokemon == 2:
-		print("You've selected Jigglypuff!")
-		player.selectPokemon("Jigglypuff")
-		enemy.selectPokemon("Eevee")
-		print("Your enemy selected Eevee!")
-
-	turnPlayer = True
+	player, enemy, turnPlayer, clear = initGame()
 
 	while player.hp > 0 and enemy.hp > 0:
 		if turnPlayer == True:
