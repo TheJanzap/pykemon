@@ -14,14 +14,18 @@ class Pokemon:
 		self.name = name
 		self.hp = self.maxHp = 100
 		for moveType in ["close", "area", "heal"]:
+			# Creates a temp move, adds it the moves list and creates a new tmpMove
 			self.tmpMove.getMoves(moveType)
 			self.moves.append(self.tmpMove)
 			self.tmpMove = Moves()
 
 	def execAttack(self, attackNum, victim):
+		# Set random value between the min/max values of the chosen attack
 		attackDmg = random.randint(
 			self.moves[attackNum - 1].min, self.moves[attackNum - 1].max)
+			
 		if self.moves[attackNum - 1].attackType == "heal":
+			# Ensures that healing will never heal more than maxHp
 			if self.hp + attackDmg > self.maxHp:
 				self.hp = self.maxHp
 				print(self.name + " fully healed themselves!")
@@ -29,6 +33,7 @@ class Pokemon:
 				self.hp += attackDmg
 				print(self.name + " healed " + str(attackDmg) + " HP!")
 		else:
+			# Regular damage attack
 			victim.hp -= attackDmg
 			print(self.name + " dealt " + str(attackDmg) +
 				  " damage to " + victim.name + "!")
@@ -75,11 +80,11 @@ def selectAttack():
 	i = 1
 	for move in player.moves:
 		if move.attackType == "heal":
-			attackTypeText = " Healing "
+			attackBehaviourText = " Healing "
 		else:
-			attackTypeText = " Damage "
+			attackBehaviourText = " Damage "
 		print("Attack " + str(i) + ": " + str(move.min) + "-" +
-			  str(move.max) + attackTypeText + "(" + move.attackType + " attack)")
+			  str(move.max) + attackBehaviourText + "(" + move.attackType + " attack)")
 		i += 1
 
 	return eval(input("Select your Attack: "))
@@ -100,6 +105,7 @@ def ai():
 
 if __name__ == "__main__":
 
+	# Required for colorama on Windows
 	init()
 
 	def clear(): return os.system('cls' if os.name == 'nt' else 'clear')
@@ -127,6 +133,7 @@ if __name__ == "__main__":
 
 	turnPlayer = True
 
+	# Win/Lose condition check
 	while player.hp > 0 and enemy.hp > 0:
 		if turnPlayer == True:
 			attack = selectAttack()
