@@ -131,7 +131,7 @@ def ai():
 		return 2
 	# Healing when HP drops below 25%
 	elif (enemy.hp / enemy.maxHp) < 0.25:
-		return 2
+		return 3
 	# Choose random attack, default behaviour
 	else:
 		return random.randint(1, 2)
